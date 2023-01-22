@@ -24,10 +24,11 @@ function TodoProvider(props) {
     //Filtro para los todos para que sean buscados en el Input
     const searchedTodos = todos.filter(todo => (todo.text.toLowerCase().includes(searchValue.toLowerCase())))
 
+
     const addTodo = (text) => {
         const newTodos = [...todos]
         newTodos.push({
-            completed: true,
+            completed: false,
             text,
         })
         saveTodos(newTodos)

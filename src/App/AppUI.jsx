@@ -1,7 +1,7 @@
+import React, { useContext } from 'react'
 import { TodoContext } from "../Context/index.jsx";
 import { TodoCounter, TodoSearch, TodoList, TodoItem, TodoForm, CreateTodoButton } from "../components";
-
-import React, { useContext } from 'react'
+import { Modal } from "../Modal/Modal.jsx";
 
 export const AppUI = () => {
     const {
@@ -21,16 +21,22 @@ export const AppUI = () => {
                 {error && <p>A ocurridoun error, recarga la pagina o vuelve mas tarde</p>}
                 {loading && <p>Cargando...</p>}
                 {(!loading &&
-                    searchedTodos.length) &&
+                    !searchedTodos.length) &&
                     <p>Crea tu primer ToDo</p>}
                 {searchedTodos.map(todo => (<TodoItem
                     key={todo.text}
                     text={todo.text}
                     completed={todo.completed}
                     onComplete={() => completeTodo(todo.text)}
-                    onDelete={() => delete(todo.text)}
+                    onDelete={() => deleteTodo(todo.text)}
                 />))}
             </TodoList>
+
+            {!!openModal && (
+                <Modal>
+                    <TodoForm />
+                </Modal>
+            )}
 
             <CreateTodoButton
                 setOpenModal={setOpenModal}
