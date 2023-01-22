@@ -1,6 +1,6 @@
 import React from 'react'
-import { TodoContext } from '../todoContext'
-import '../styles/TodoForm.css'
+import { TodoContext } from '../Context'
+import '../styles/components/TodoForm.css'
 
 const TodoForm = () => {
     const [newTodoValue, setNewTodoValue] = React.useState('')
